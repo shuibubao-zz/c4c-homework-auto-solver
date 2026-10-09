@@ -1,0 +1,249 @@
+# ============================================================
+# T-box: Linear Algebra（C4C 学科扩展 · 主域）
+# ============================================================
+# Oracle sources:
+#   - 同济大学《线性代数》第七版（工科）：行列式、矩阵、特征值、二次型
+#   - Strang, Introduction to Linear Algebra, 5th ed.（SVD / 正交化视角）
+#   - SymPy 官方文档 Matrix 模块（实现语义的最终依据）
+#
+# 设计说明（为什么用 T-box 而不是堆正则）：
+#   领域知识（有哪些概念、每个概念用什么解法、怎么分类）与题目实例分离。
+#   扩展学科 = 加一个 yaml + 加对应的确定性 solver，**不改调度器**。
+#   这就是 starter kit 里 "Solve rate = domain coverage" 那句话的落地方式。
+# ============================================================
+
+domain: linear_algebra
+version: "1.0"
+
+oracle_sources:
+  - type: textbook
+    ref: "同济大学数学系《线性代数》第七版，高等教育出版社"
+    authority: primary
+    distilled_knowledge:
+      - "行列式：|A| ≠ 0 ⟺ A 可逆 ⟺ rank(A) = n ⟺ 齐次方程组只有零解"
+      - "克拉默法则：|A| ≠ 0 时 Ax=b 有唯一解 x_i = |A_i|/|A|"
+      - "克罗内克–卡佩里定理：Ax=b 有解 ⟺ rank(A) = rank(A|b)"
+      - "特征多项式 p(λ) = det(A - λI)；Σλᵢ = tr(A)，Πλᵢ = det(A)"
+      - "A 可对角化 ⟺ 有 n 个线性无关特征向量（⟸ n 个互异特征值）"
+      - "实对称矩阵必可正交对角化：QᵀAQ = diag(λ₁,…,λₙ)，Q 正交"
+      - "施密特正交化：β_k = α_k − Σ_{j<k} ⟨α_k,β_j⟩/⟨β_j,β_j⟩ · β_j，再单位化"
+      - "二次型标准形：正交变换 x = Qy，惯性指数由特征值符号决定"
+      - "SVD：任意 m×n 矩阵 A = UΣVᵀ，σᵢ = sqrt(λᵢ(AᵀA))"
+  - type: reference
+    ref: "SymPy 1.14 Matrix API 文档 (docs.sympy.org/latest/modules/matrices/matrices.html)"
+    authority: primary
+    distilled_knowledge:
+      - "Matrix.det() / berkowitz_det() 是两条独立实现，可互检"
+      - "Matrix.eigenvects() 返回 (特征值, 代数重数, [特征向量])"
+      - "Matrix.diagonalize() 仅在可对角化时成功，否则抛 MatrixError"
+      - "GramSchmidt(list, orthonormal=True) 直接给正交单位向量组"
+
+# ─────────────────────────────────────────────
+# 概念节点（T-box 的"术语层"）
+# ─────────────────────────────────────────────
+concepts:
+  - id: determinant
+    name: "行列式"
+    definition: "方阵 A 的行列式 |A|，A 可逆的判据"
+    key_property: "det(A) ≠ 0 ⟺ A 可逆"
+
+  - id: matrix_inverse
+    name: "逆矩阵"
+    definition: "满足 AA⁻¹ = A⁻¹A = I 的矩阵"
+    key_property: "A⁻¹ = A*/|A|（伴随矩阵法）"
+
+  - id: matrix_rank
+    name: "矩阵的秩"
+    definition: "行（列）向量组的极大无关组大小"
+    key_property: "rank(A) = rank(Aᵀ) = 主元个数"
+
+  - id: eigenvalues_eigenvectors
+    name: "特征值与特征向量"
+    definition: "满足 Av = λv 的 λ 与非零 v"
+    key_property: "p(λ) = det(A − λI) = 0"
+
+  - id: diagonalization
+    name: "矩阵对角化"
+    definition: "求可逆 P 使 P⁻¹AP = D 为对角阵"
+    key_property: "A 有 n 个线性无关特征向量"
+
+  - id: gram_schmidt
+    name: "施密特正交化"
+    definition: "把线性无关向量组化为正交（单位）向量组"
+    key_property: "QᵀQ = I"
+
+  - id: svd
+    name: "奇异值分解"
+    definition: "A = UΣVᵀ，Σ 对角元为非负奇异值"
+    key_property: "σᵢ = sqrt(λᵢ(AᵀA))"
+
+  - id: linear_system
+    name: "线性方程组"
+    definition: "Ax = b 的求解与解的结构判定"
+    key_property: "rank(A) vs rank(A|b) vs n"
+
+  - id: matrix_product
+    name: "矩阵乘法与幂"
+    definition: "AB 与 Aⁿ"
+    key_property: "(AB)ᵀ = BᵀAᵀ"
+
+  - id: quadratic_form
+    name: "二次型标准形"
+    definition: "实对称二次型经正交变换化为平方和"
+    key_property: "QᵀAQ = diag，惯性指数不变"
+
+# ─────────────────────────────────────────────
+# 解法层（每个概念对应的确定性计算路径）
+# ─────────────────────────────────────────────
+solution_methods:
+  - id: determinant_solver
+    concept: determinant
+    engine: sympy
+    routine: "Matrix.det()"
+    self_check: "与 berkowitz_det() 结果一致；可逆时 det(A)·det(A⁻¹)=1"
+
+  - id: matrix_inverse_solver
+    concept: matrix_inverse
+    engine: sympy
+    routine: "Matrix.inv()"
+    self_check: "A·A⁻¹ = I 且 A⁻¹·A = I（逐元素为零）"
+
+  - id: matrix_rank_solver
+    concept: matrix_rank
+    engine: sympy
+    routine: "Matrix.rank() + rref()"
+    self_check: "rank(A)=rank(Aᵀ)，且等于主元个数，且 ≤ min(m,n)"
+
+  - id: eigen_decomposition_solver
+    concept: eigenvalues_eigenvectors
+    engine: sympy
+    routine: "Matrix.eigenvects()"
+    self_check: "det(A−λI)=0；Av=λv；Σλ=tr(A)；Πλ=det(A)"
+
+  - id: diagonalization_solver
+    concept: diagonalization
+    engine: sympy
+    routine: "Matrix.diagonalize()"
+    self_check: "P⁻¹AP = D；A = PDP⁻¹；det(P) ≠ 0"
+
+  - id: gram_schmidt_solver
+    concept: gram_schmidt
+    engine: sympy
+    routine: "GramSchmidt(orthonormal=True)"
+    self_check: "QᵀQ = I，各列模长 = 1"
+
+  - id: svd_solver
+    concept: svd
+    engine: sympy
+    routine: "Matrix.singular_value_decomposition()"
+    self_check: "UᵀU=I，VᵀV=I，‖UΣVᵀ−A‖ < 1e−8，σ 非负降序"
+
+  - id: linear_system_solver
+    concept: linear_system
+    engine: sympy
+    routine: "linsolve() + rank 判定"
+    self_check: "解代回原方程残差 = 0；rank 关系自洽"
+
+  - id: matrix_product_solver
+    concept: matrix_product
+    engine: sympy
+    routine: "A*B 或 A**n"
+    self_check: "(AB)ᵀ = BᵀAᵀ"
+
+  - id: quadratic_form_solver
+    concept: quadratic_form
+    engine: sympy
+    routine: "diagonalize() + 列单位化"
+    self_check: "QᵀQ = I 且 QᵀAQ 为对角阵"
+
+# ─────────────────────────────────────────────
+# 分类规则（按 priority 降序匹配，越高越先试）
+# ─────────────────────────────────────────────
+# 可用条件键（见 classify.py 的 _check_condition）：
+#   text_contains: [..]        题干（含子题）出现任一关键词
+#   has_matrix_expression: true/false   题干含 pmatrix/bmatrix/array 等矩阵环境
+#   has_ode_expression:    true/false
+#   has_limit_expression:  true/false
+#   has_function_definition / has_abstract_function / has_sub_problems
+classification_rules:
+
+  - priority: 98
+    pattern:
+      text_contains: ["奇异值", "singular value", "SVD", "奇异值分解"]
+    maps_to: svd
+    solver: svd_solver
+    reason: "题干出现『奇异值 / SVD』"
+
+  - priority: 96
+    pattern:
+      text_contains: ["施密特", "施密特正交化", "Gram-Schmidt", "gram schmidt",
+                      "正交化", "正交单位化", "orthogonaliz", "orthonormal"]
+    maps_to: gram_schmidt
+    solver: gram_schmidt_solver
+    reason: "题干出现『正交化 / Gram-Schmidt』"
+
+  - priority: 94
+    pattern:
+      text_contains: ["对角化", "可对角化", "diagonaliz", "diagonalis"]
+    maps_to: diagonalization
+    solver: diagonalization_solver
+    reason: "题干出现『对角化』"
+
+  - priority: 92
+    pattern:
+      text_contains: ["特征值", "特征向量", "特征多项式", "特征方程",
+                      "eigenvalue", "eigenvector", "eigen"]
+    maps_to: eigenvalues_eigenvectors
+    solver: eigen_decomposition_solver
+    reason: "题干出现『特征值 / 特征向量』"
+
+  - priority: 90
+    pattern:
+      text_contains: ["二次型", "quadratic form", "标准形", "规范形"]
+    maps_to: quadratic_form
+    solver: quadratic_form_solver
+    reason: "题干出现『二次型 / 标准形』"
+
+  - priority: 88
+    pattern:
+      text_contains: ["逆矩阵", "求逆", "inverse", "可逆", "A^{-1}", "A⁻¹"]
+    maps_to: matrix_inverse
+    solver: matrix_inverse_solver
+    reason: "题干出现『逆矩阵 / 求逆』"
+
+  - priority: 86
+    pattern:
+      text_contains: ["行列式", "determinant", "det(", "|A|"]
+    maps_to: determinant
+    solver: determinant_solver
+    reason: "题干出现『行列式 / determinant』"
+
+  - priority: 84
+    pattern:
+      text_contains: ["的秩", "矩阵的秩", "rank", "极大无关组"]
+    maps_to: matrix_rank
+    solver: matrix_rank_solver
+    reason: "题干出现『秩 / rank』"
+
+  - priority: 82
+    pattern:
+      text_contains: ["方程组", "system of equations", "linear system",
+                      "解线性", "通解", "齐次", "非齐次", "解的结构"]
+    maps_to: linear_system
+    solver: linear_system_solver
+    reason: "题干出现『方程组 / 通解』"
+
+  - priority: 80
+    pattern:
+      text_contains: ["矩阵乘法", "矩阵乘积", "matrix product", "multiply"]
+      has_matrix_expression: true
+    maps_to: matrix_product
+    solver: matrix_product_solver
+    reason: "题干出现『矩阵乘法』且含矩阵环境"
+
+  - priority: 60
+    pattern:
+      has_matrix_expression: true
+    maps_to: determinant
+    solver: determinant_solver
+    reason: "兜底：含矩阵环境但无更具体关键词，默认按行列式尝试"

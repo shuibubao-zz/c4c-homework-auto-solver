@@ -1,0 +1,449 @@
+[
+  {
+    "problem_id": "1",
+    "problem_text": "计算下列三阶行列式的值：\n\n$$\nA = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 10 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 10 \\end{pmatrix}$。",
+      "按行列式定义（或初等行变换化简）计算，得 $|A| = -3$。",
+      "数值形式：$|A| = -3.00000000000000$。",
+      "回验：换用 Berkowitz 算法重算，结果一致。"
+    ],
+    "answer": "det = -3",
+    "answer_latex": "-3",
+    "validation": {
+      "passed": true,
+      "n_checks": 2,
+      "checks": [
+        {
+          "name": "两种算法一致 (det vs berkowitz_det)",
+          "ok": true,
+          "detail": "-3 vs -3"
+        },
+        {
+          "name": "det(A)·det(A⁻¹)=1",
+          "ok": true,
+          "detail": "-3·-1/3=1"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.determinant_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "determinant",
+    "classify_reason": "题干出现『行列式 / determinant』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "2",
+    "problem_text": "求下列矩阵的逆矩阵 $A^{-1}$：\n\n$$\nA = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 2 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 2 \\end{pmatrix}$，先算 $\\det(A) = 4 \\neq 0$，故 $A$ 可逆。",
+      "用伴随矩阵法 / 初等行变换求得 $A^{-1} = \\begin{pmatrix} \\frac{3}{4} & - \\frac{1}{2} & \\frac{1}{4} \\\\ - \\frac{1}{2} & 1 & - \\frac{1}{2} \\\\ \\frac{1}{4} & - \\frac{1}{2} & \\frac{3}{4} \\end{pmatrix}$。",
+      "回验：$A A^{-1} = A^{-1} A = I$（逐元素为零）。"
+    ],
+    "answer": "A^-1 = [[3/4, -1/2, 1/4], [-1/2, 1, -1/2], [1/4, -1/2, 3/4]]",
+    "answer_latex": "\\begin{pmatrix} \\frac{3}{4} & - \\frac{1}{2} & \\frac{1}{4} \\\\ - \\frac{1}{2} & 1 & - \\frac{1}{2} \\\\ \\frac{1}{4} & - \\frac{1}{2} & \\frac{3}{4} \\end{pmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 3,
+      "checks": [
+        {
+          "name": "A·A⁻¹ = I",
+          "ok": true,
+          "detail": "逐元素为零"
+        },
+        {
+          "name": "A⁻¹·A = I",
+          "ok": true,
+          "detail": "逐元素为零"
+        },
+        {
+          "name": "det(A)·det(A⁻¹) = 1",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    "solver": "solvers_linalg.matrix_inverse_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "matrix_inverse",
+    "classify_reason": "题干出现『逆矩阵 / 求逆』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "3",
+    "problem_text": "已知\n\n$$\nA = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}, \\qquad\nB = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\n$$\n\n计算矩阵乘积 $AB$。",
+    "solved": true,
+    "steps": [
+      "$A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$，$B = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$。",
+      "按矩阵乘法规则逐元素计算，得 $AB = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$。",
+      "回验：$(AB)^{\\mathrm{T}} = B^{\\mathrm{T}}A^{\\mathrm{T}}$ 成立。"
+    ],
+    "answer": "AB = [[2, 1], [4, 3]]",
+    "answer_latex": "\\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 2,
+      "checks": [
+        {
+          "name": "维度检查 (m×n)(n×p) = m×p",
+          "ok": true,
+          "detail": "(2, 2)"
+        },
+        {
+          "name": "(AB)ᵀ = BᵀAᵀ",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    "solver": "solvers_linalg.matrix_product_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "matrix_product",
+    "classify_reason": "题干出现『矩阵乘法』且含矩阵环境",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "4",
+    "problem_text": "求下列矩阵的秩：\n\n$$\nA = \\begin{pmatrix} 1 & 2 & 3 & 4 \\\\ 2 & 4 & 6 & 8 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 1 & 2 & 3 & 4 \\\\ 2 & 4 & 6 & 8 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}$，将其化为行阶梯形。",
+      "行最简形为 $\\begin{pmatrix} 1 & 0 & 1 & 0 \\\\ 0 & 1 & 1 & 2 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}$，主元列下标为 $(0, 1)$。",
+      "非零行（主元）个数为 $2$，故 $\\mathrm{rank}(A) = 2$。"
+    ],
+    "answer": "rank = 2",
+    "answer_latex": "2",
+    "validation": {
+      "passed": true,
+      "n_checks": 3,
+      "checks": [
+        {
+          "name": "rank(A) = rank(Aᵀ)（秩的基本性质）",
+          "ok": true,
+          "detail": "2 vs 2"
+        },
+        {
+          "name": "主元个数 = 秩",
+          "ok": true,
+          "detail": "pivots=(0, 1)"
+        },
+        {
+          "name": "秩 ≤ min(m,n)",
+          "ok": true,
+          "detail": "2 ≤ 3"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.matrix_rank_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "matrix_rank",
+    "classify_reason": "题干出现『秩 / rank』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "5",
+    "problem_text": "解下列线性方程组：\n\n$$\n\\begin{cases}\nx + y + z = 6 \\\\\n2x - y + 3z = 9 \\\\\nx + 2y - z = 2\n\\end{cases}\n$$",
+    "solved": true,
+    "steps": [
+      "将方程组写成矩阵形式 $Ax = b$，用高斯消元（或克拉默法则）求解。",
+      "未知量为 $x, y, z$。",
+      "解得 $x = 1, y = 2, z = 3$。"
+    ],
+    "answer": "{(1, 2, 3)}",
+    "answer_latex": "x = 1, y = 2, z = 3",
+    "validation": {
+      "passed": true,
+      "n_checks": 3,
+      "checks": [
+        {
+          "name": "代回方程 x + y + z=6",
+          "ok": true,
+          "detail": "残差=0"
+        },
+        {
+          "name": "代回方程 2 x - y + 3 z=9",
+          "ok": true,
+          "detail": "残差=0"
+        },
+        {
+          "name": "代回方程 x + 2 y - z=2",
+          "ok": true,
+          "detail": "残差=0"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.linear_system_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "linear_system",
+    "classify_reason": "题干出现『方程组 / 通解』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "6",
+    "problem_text": "求下列矩阵的特征值和对应的特征向量：\n\n$$\nA = \\begin{pmatrix} 2 & -1 & -1 \\\\ -1 & 2 & -1 \\\\ -1 & -1 & 2 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 2 & -1 & -1 \\\\ -1 & 2 & -1 \\\\ -1 & -1 & 2 \\end{pmatrix}$。解特征方程 $\\det(A - \\lambda I) = 0$：",
+      "特征多项式 $p(\\lambda) = \\lambda^{3} - 6 \\lambda^{2} + 9 \\lambda = \\lambda \\left(\\lambda - 3\\right)^{2}$。",
+      "故特征值为 $\\lambda = 0, 3$（重数已在括号中给出）。",
+      "对 $\\lambda = 0$，解 $(A - 0I)x = 0$，得基础解系 $\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$（几何重数 $1$，代数重数 $1$）。",
+      "对 $\\lambda = 3$，解 $(A - 3I)x = 0$，得基础解系 $\\begin{pmatrix} -1 \\\\ 1 \\\\ 0 \\end{pmatrix}, \\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix}$（几何重数 $2$，代数重数 $2$）。"
+    ],
+    "answer": "eigenvalues = ['0', '3']",
+    "answer_latex": "0(重数1), 3(重数2)",
+    "validation": {
+      "passed": true,
+      "n_checks": 7,
+      "checks": [
+        {
+          "name": "λ=0 满足特征方程 det(A-λI)=0",
+          "ok": true,
+          "detail": "charpoly=\\lambda^{3} - 6 \\lambda^{2} + 9 \\lambda"
+        },
+        {
+          "name": "λ=3 满足特征方程 det(A-λI)=0",
+          "ok": true,
+          "detail": "charpoly=\\lambda^{3} - 6 \\lambda^{2} + 9 \\lambda"
+        },
+        {
+          "name": "Av = λv (λ=0, v=\\left[\\begin{matrix}1 & 1 & 1\\end{matrix}\\right])",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "Av = λv (λ=3, v=\\left[\\begin{matrix}-1 & 1 & 0\\end{matrix}\\right])",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "Av = λv (λ=3, v=\\left[\\begin{matrix}-1 & 0 & 1\\end{matrix}\\right])",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "Σλᵢ(含重数) = tr(A)",
+          "ok": true,
+          "detail": "tr(A)=6"
+        },
+        {
+          "name": "Πλᵢ(含重数) = det(A)",
+          "ok": true,
+          "detail": "det(A)=0"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.eigen_decomposition_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "eigenvalues_eigenvectors",
+    "classify_reason": "题干出现『特征值 / 特征向量』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "7",
+    "problem_text": "判断下列矩阵是否可对角化；若可以，求出可逆矩阵 $P$ 与对角阵 $D$，使 $P^{-1}AP = D$：\n\n$$\nA = \\begin{pmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{pmatrix}$。",
+      "求得特征值后取对应的线性无关特征向量作为列，构成 $P = \\begin{pmatrix} -1 & -1 & 1 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}$。",
+      "对应的对角阵 $D = \\begin{pmatrix} -1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & 5 \\end{pmatrix}$。",
+      "于是 $P^{-1}AP = D$，即 $A = PDP^{-1}$。",
+      "回验：直接计算 $P^{-1}AP$ 与 $D$ 逐元素相等，且 $\\det(P)\\neq 0$。"
+    ],
+    "answer": "P=[[-1, -1, 1], [1, 0, 1], [0, 1, 1]], D=[[-1, 0, 0], [0, -1, 0], [0, 0, 5]]",
+    "answer_latex": "P = \\begin{pmatrix} -1 & -1 & 1 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix},\\quad D = \\begin{pmatrix} -1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & 5 \\end{pmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 4,
+      "checks": [
+        {
+          "name": "P⁻¹AP = D",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "A = PDP⁻¹",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "D 为对角阵",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "P 可逆 (det≠0)",
+          "ok": true,
+          "detail": "det(P)=3"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.diagonalization_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "diagonalization",
+    "classify_reason": "题干出现『对角化』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "8",
+    "problem_text": "用施密特正交化方法，把下列向量组（按列给出）化为正交单位向量组：\n\n$$\n(\\alpha_1, \\alpha_2, \\alpha_3) = \\begin{pmatrix} 1 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "对给定向量组 $\\alpha_1,\\dots,\\alpha_n$ 施行施密特正交化：",
+      "$\\beta_1 = \\alpha_1,\\quad \\beta_k = \\alpha_k - \\sum_{j<k}\\frac{\\langle\\alpha_k,\\beta_j\\rangle}{\\langle\\beta_j,\\beta_j\\rangle}\\beta_j$",
+      "再单位化 $e_k = \\beta_k/\\|\\beta_k\\|$，得正交单位向量组（按列）$Q = \\begin{pmatrix} \\frac{\\sqrt{2}}{2} & \\frac{\\sqrt{6}}{6} & - \\frac{\\sqrt{3}}{3} \\\\ \\frac{\\sqrt{2}}{2} & - \\frac{\\sqrt{6}}{6} & \\frac{\\sqrt{3}}{3} \\\\ 0 & \\frac{\\sqrt{6}}{3} & \\frac{\\sqrt{3}}{3} \\end{pmatrix}$。",
+      "回验：$Q^{\\mathrm{T}}Q = I$，列向量两两正交且模长为 1。"
+    ],
+    "answer": "Q=[[sqrt(2)/2, sqrt(6)/6, -sqrt(3)/3], [sqrt(2)/2, -sqrt(6)/6, sqrt(3)/3], [0, sqrt(6)/3, sqrt(3)/3]]",
+    "answer_latex": "\\begin{pmatrix} \\frac{\\sqrt{2}}{2} & \\frac{\\sqrt{6}}{6} & - \\frac{\\sqrt{3}}{3} \\\\ \\frac{\\sqrt{2}}{2} & - \\frac{\\sqrt{6}}{6} & \\frac{\\sqrt{3}}{3} \\\\ 0 & \\frac{\\sqrt{6}}{3} & \\frac{\\sqrt{3}}{3} \\end{pmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 2,
+      "checks": [
+        {
+          "name": "QᵀQ = I（列正交且单位）",
+          "ok": true,
+          "detail": "Q^T Q = \\left[\\begin{matrix}1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{matrix}\\right]"
+        },
+        {
+          "name": "每组向量单位长度",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    "solver": "solvers_linalg.gram_schmidt_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "gram_schmidt",
+    "classify_reason": "题干出现『正交化 / Gram-Schmidt』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "9",
+    "problem_text": "用正交变换把下列实对称矩阵对应的二次型化为标准形，并写出所用正交矩阵 $Q$：\n\n$$\nA = \\begin{pmatrix} 4 & -1 & -1 \\\\ -1 & 4 & -1 \\\\ -1 & -1 & 4 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "二次型矩阵 $A = \\begin{pmatrix} 4 & -1 & -1 \\\\ -1 & 4 & -1 \\\\ -1 & -1 & 4 \\end{pmatrix}$（实对称）。",
+      "求特征值并取正交单位特征向量，得正交阵 $Q = \\begin{pmatrix} \\frac{\\sqrt{3}}{3} & - \\frac{\\sqrt{2}}{2} & - \\frac{\\sqrt{6}}{6} \\\\ \\frac{\\sqrt{3}}{3} & \\frac{\\sqrt{2}}{2} & - \\frac{\\sqrt{6}}{6} \\\\ \\frac{\\sqrt{3}}{3} & 0 & \\frac{\\sqrt{6}}{3} \\end{pmatrix}$。",
+      "作正交变换 $x = Qy$，标准形为 $Q^{\\mathrm{T}}AQ = \\begin{pmatrix} 2 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & 5 \\end{pmatrix}$，即 $f = 2y_1^2 + 5y_2^2 + 5y_3^2$。",
+      "回验：$Q^{\\mathrm{T}}Q = I$ 且 $Q^{\\mathrm{T}}AQ$ 为对角阵。"
+    ],
+    "answer": "标准形对角元 = [2, 5, 5]",
+    "answer_latex": "Q^{\\mathrm{T}}AQ = \\begin{pmatrix} 2 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & 5 \\end{pmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 4,
+      "checks": [
+        {
+          "name": "QᵀQ = I（Q 为正交阵）",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "QᵀAQ 确为对角阵（非对角元全 0）",
+          "ok": true,
+          "detail": "Q^TAQ = \\left[\\begin{matrix}2 & 0 & 0\\\\0 & 5 & 0\\\\0 & 0 & 5\\end{matrix}\\right]"
+        },
+        {
+          "name": "D 的对角元与 A 的特征值（含重数）一致",
+          "ok": true,
+          "detail": "特征值=[2, 5, 5], D对角元=[2, 5, 5]"
+        },
+        {
+          "name": "A = QDQᵀ（还原原矩阵）",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    "solver": "solvers_linalg.quadratic_form_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "quadratic_form",
+    "classify_reason": "题干出现『二次型 / 标准形』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "10",
+    "problem_text": "求下列矩阵的奇异值分解（SVD），即求 $U, \\Sigma, V$ 使 $A = U\\Sigma V^{\\mathrm{T}}$：\n\n$$\nA = \\begin{pmatrix} 3 & 0 \\\\ 4 & 5 \\end{pmatrix}\n$$",
+    "solved": true,
+    "steps": [
+      "设 $A = \\begin{pmatrix} 3 & 0 \\\\ 4 & 5 \\end{pmatrix}$。计算 $A^{\\mathrm{T}}A$ 的特征值，取平方根得奇异值。",
+      "$U = \\begin{bmatrix} -0.948683 & -0.316228 \\\\ 0.316228 & -0.948683 \\end{bmatrix}$，$\\Sigma = \\begin{bmatrix} 2.23607 & 0 \\\\ 0 & 6.7082 \\end{bmatrix}$，$V = \\begin{bmatrix} -0.707107 & -0.707107 \\\\ 0.707107 & -0.707107 \\end{bmatrix}$。",
+      "回验：$\\|U\\Sigma V^{\\mathrm{T}} - A\\| = 9.93013661298909E-16 \\approx 0$。"
+    ],
+    "answer": "singular values = [2.23606797749979, 6.708203932499369]",
+    "answer_latex": "U = \\begin{bmatrix} -0.948683 & -0.316228 \\\\ 0.316228 & -0.948683 \\end{bmatrix},\\ \\Sigma = \\begin{bmatrix} 2.23607 & 0 \\\\ 0 & 6.7082 \\end{bmatrix},\\ V = \\begin{bmatrix} -0.707107 & -0.707107 \\\\ 0.707107 & -0.707107 \\end{bmatrix}",
+    "validation": {
+      "passed": true,
+      "n_checks": 4,
+      "checks": [
+        {
+          "name": "UᵀU = I",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "VᵀV = I",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "UΣVᵀ 重构误差 < 1e-8",
+          "ok": true,
+          "detail": "‖UΣVᵀ-A‖ = 9.93013661298909E-16"
+        },
+        {
+          "name": "奇异值非负且降序",
+          "ok": true,
+          "detail": "σ = [2.23606797749979, 6.70820393249937]"
+        }
+      ]
+    },
+    "solver": "solvers_linalg.svd_solver",
+    "engine": "sympy",
+    "domain": "linear_algebra",
+    "concept_id": "svd",
+    "classify_reason": "题干出现『奇异值 / SVD』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "11",
+    "problem_text": "证明：若 $A$ 为实对称矩阵，则 $A$ 的属于不同特征值的特征向量彼此正交。",
+    "solved": false,
+    "steps": [],
+    "answer": null,
+    "answer_latex": "",
+    "reason": "solvers_linalg.eigen_decomposition_solver 执行失败: ValueError: 题目中未找到矩阵环境（pmatrix/bmatrix/vmatrix/array）",
+    "solver": "none",
+    "engine": "none",
+    "domain": "linear_algebra",
+    "concept_id": "eigenvalues_eigenvectors",
+    "classify_reason": "题干出现『特征值 / 特征向量』",
+    "sub_solutions": []
+  },
+  {
+    "problem_id": "12",
+    "problem_text": "设 $A$ 是 $m \\times n$ 实矩阵，说明秩—零度定理 $\\mathrm{rank}(A) + \\dim N(A) = n$ 的几何含义，并举一个具体的 $2 \\times 3$ 矩阵作为例子。",
+    "solved": false,
+    "steps": [],
+    "answer": null,
+    "answer_latex": "",
+    "reason": "solvers_linalg.matrix_rank_solver 执行失败: ValueError: 题目中未找到矩阵环境（pmatrix/bmatrix/vmatrix/array）",
+    "solver": "none",
+    "engine": "none",
+    "domain": "linear_algebra",
+    "concept_id": "matrix_rank",
+    "classify_reason": "题干出现『秩 / rank』",
+    "sub_solutions": []
+  }
+]

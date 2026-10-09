@@ -1,0 +1,46 @@
+================================================================
+C4C 提交前核对
+================================================================
+
+[1] 必交文档（CHALLENGE.md §必须提交的文件）
+  [√] 卢怡然_C4C_方案设计.md（11,330 字节）
+  [√] 卢怡然_C4C_验证报告.md（12,724 字节）
+  [√] 卢怡然_C4C_教学说明.md（9,501 字节）
+  [√] 卢怡然_C4C_拿来说明.md（7,946 字节）
+  [√] 卢怡然_C4C_AI日志.md（17,120 字节）
+  [√] 卢怡然_C4C_作业原件.md（2,105 字节）
+  [√] 卢怡然_C4C_output.pdf（465,789 字节）
+
+[2] 可运行技能包
+  [√] .skill 与 manifest 记录的 sha256 一致（549,591 字节）
+  [√] 包内无 __pycache__  — 0 个
+  [√] 包内含 SKILL.md
+  [√] 包内含 pipeline.py
+  [√] 包内含 llm_client.py
+  [√] 包内含 solvers_linalg.py
+  [√] 包内含 linear_algebra.yaml
+
+[3] 证据留档
+  [√] evidence/selftest_run.txt
+  [√] evidence/run/3_solutions.json
+  [√] evidence/run/run_report.json
+  [√] evidence/run/homework.pdf
+  [√] evidence/skill_manifest.json
+
+[4] 一致性
+  [√] output.pdf 与 evidence/run/homework.pdf 字节一致
+  [√] run_report 的 Stage5 验证 6/6 项通过
+  [√] 自检输出为 45/45
+
+[5] 基线黄金
+  [√] golden/legacy_test1_solutions.json 未被污染
+  [√] golden/legacy_test1_parsed.json 未被污染
+  [√] golden/legacy_test2_solutions.json 未被污染
+  [√] golden/legacy_test2_parsed.json 未被污染
+
+[6] 诚实性：不许存在会误导的残留
+  [√] 无 LLM 调用留档时已附说明文件
+
+================================================================
+结果: 27/27 项通过
+================================================================

@@ -1,0 +1,96 @@
+{
+  "input": "C:/Users/卢怡然/Desktop/C4C/卢怡然_C4C_作业原件.md",
+  "output_dir": "C:\\Users\\卢怡然\\Desktop\\C4C\\evidence\\run",
+  "engine": "v2",
+  "llm": "关闭",
+  "total": 12,
+  "solved": 10,
+  "verified": 10,
+  "llm_fallback": 0,
+  "stage5": {
+    "ok": true,
+    "engine": "pdflatex",
+    "pdf": "C:\\Users\\卢怡然\\Desktop\\C4C\\evidence\\run\\homework.pdf",
+    "size": 465789,
+    "checks": [
+      {
+        "id": "V1",
+        "name": "PDF 已生成且 > 1KB（465,789 字节）",
+        "ok": true
+      },
+      {
+        "id": "V6",
+        "name": "PDF 文件完整（含 %%EOF）",
+        "ok": true
+      },
+      {
+        "id": "V3",
+        "name": "编译日志无致命错误",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "id": "V2",
+        "name": "页数 ≥ 1（实测 7 页）",
+        "ok": true
+      },
+      {
+        "id": "V4",
+        "name": "文本中无未解析引用（??）",
+        "ok": true
+      },
+      {
+        "id": "V5",
+        "name": "中文字符已正确嵌入（抽取到 872 个汉字）",
+        "ok": true
+      }
+    ],
+    "attempts": [
+      {
+        "ok": false,
+        "engine": "xelatex",
+        "error": "xelatex 未产出 PDF",
+        "log_tail": "s XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.10.8)  8 OCT 2026 15:09\nentering extended mode\n restricted \\write18 enabled.\n %&-line parsing enabled.\n**C:/Users/卢怡然/Desktop/C4C/evidence/run/homework.tex\n(c:/Users/卢怡然/Desktop/C4C/evidence/run/homework.tex\nLaTeX2e <2026-06-01>\nL3 programming layer <2026-09-09>\n(c:/texlive/2026/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(c:/texlive/2026/texmf-dist/tex/latex/base/size12.clo\nFile: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)\n"
+      },
+      {
+        "ok": true,
+        "engine": "pdflatex",
+        "size": 465789,
+        "checks": [
+          {
+            "id": "V1",
+            "name": "PDF 已生成且 > 1KB（465,789 字节）",
+            "ok": true
+          },
+          {
+            "id": "V6",
+            "name": "PDF 文件完整（含 %%EOF）",
+            "ok": true
+          },
+          {
+            "id": "V3",
+            "name": "编译日志无致命错误",
+            "ok": true,
+            "detail": ""
+          },
+          {
+            "id": "V2",
+            "name": "页数 ≥ 1（实测 7 页）",
+            "ok": true
+          },
+          {
+            "id": "V4",
+            "name": "文本中无未解析引用（??）",
+            "ok": true
+          },
+          {
+            "id": "V5",
+            "name": "中文字符已正确嵌入（抽取到 872 个汉字）",
+            "ok": true
+          }
+        ]
+      }
+    ]
+  },
+  "elapsed_sec": 8.94
+}

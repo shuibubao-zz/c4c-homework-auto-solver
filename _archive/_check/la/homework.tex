@@ -1,0 +1,365 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\geometry{margin=2.4cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{线性代数}
+\lhead{学生姓名}
+\rfoot{第 \thepage 页}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\definecolor{okgreen}{RGB}{0,110,60}
+\definecolor{warnred}{RGB}{170,30,30}
+\definecolor{llmgray}{RGB}{90,90,90}
+
+\newcommand{\problem}[1]{\subsection*{第 #1 题}}
+\newcommand{\solution}{\textbf{解答。}}
+\allowdisplaybreaks[3]
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\bfseries 作业解答} \\[0.5em]
+    {\large 线性代数} \\[0.3em]
+    学生姓名 \quad | \quad 2026-10-08
+\end{center}
+
+\hrule
+\vspace{1em}
+\setlength{\parskip}{0.35em}
+\problem{1}
+
+计算下列三阶行列式的值：
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 10 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 10 \end{pmatrix}$。
+
+按行列式定义（或初等行变换化简）计算，得 $|A| = -3$。
+
+数值形式：$|A| = -3.00000000000000$。
+
+回验：换用 Berkowitz 算法重算，结果一致。
+
+\textbf{答案：}
+\[\boxed{-3}\]
+
+\textcolor{okgreen}{【符号回验 2/2 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{2}
+
+求下列矩阵的逆矩阵 $A^{-1}$：
+
+$$
+A = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 2 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 2 \end{pmatrix}$，先算 $\det(A) = 4 \neq 0$，故 $A$ 可逆。
+
+用伴随矩阵法 / 初等行变换求得 $A^{-1} = \begin{pmatrix} \frac{3}{4} & - \frac{1}{2} & \frac{1}{4} \\ - \frac{1}{2} & 1 & - \frac{1}{2} \\ \frac{1}{4} & - \frac{1}{2} & \frac{3}{4} \end{pmatrix}$。
+
+回验：$A A^{-1} = A^{-1} A = I$（逐元素为零）。
+
+\textbf{答案：}
+{\small
+\[\begin{pmatrix} \frac{3}{4} & - \frac{1}{2} & \frac{1}{4} \\ - \frac{1}{2} & 1 & - \frac{1}{2} \\ \frac{1}{4} & - \frac{1}{2} & \frac{3}{4} \end{pmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 3/3 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{3}
+
+已知
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+$$
+
+计算矩阵乘积 $AB$。
+
+\solution
+
+$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$，$B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$。
+
+按矩阵乘法规则逐元素计算，得 $AB = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}$。
+
+回验：$(AB)^{\mathrm{T}} = B^{\mathrm{T}}A^{\mathrm{T}}$ 成立。
+
+\textbf{答案：}
+{\small
+\[\begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 2/2 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{4}
+
+求下列矩阵的秩：
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ 1 & 0 & 1 & 0 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ 1 & 0 & 1 & 0 \end{pmatrix}$，将其化为行阶梯形。
+
+行最简形为 $\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 1 & 1 & 2 \\ 0 & 0 & 0 & 0 \end{pmatrix}$，主元列下标为 $(0, 1)$。
+
+非零行（主元）个数为 $2$，故 $\mathrm{rank}(A) = 2$。
+
+\textbf{答案：}
+\[\boxed{2}\]
+
+\textcolor{okgreen}{【符号回验 3/3 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{5}
+
+解下列线性方程组：
+
+$$
+\begin{cases}
+x + y + z = 6 \\
+2x - y + 3z = 9 \\
+x + 2y - z = 2
+\end{cases}
+$$
+
+\solution
+
+将方程组写成矩阵形式 $Ax = b$，用高斯消元（或克拉默法则）求解。
+
+未知量为 $x, y, z$。
+
+解得 $x = 1, y = 2, z = 3$。
+
+\textbf{答案：}
+\[\boxed{x = 1, y = 2, z = 3}\]
+
+\textcolor{okgreen}{【符号回验 3/3 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{6}
+
+求下列矩阵的特征值和对应的特征向量：
+
+$$
+A = \begin{pmatrix} 2 & -1 & -1 \\ -1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 2 & -1 & -1 \\ -1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix}$。解特征方程 $\det(A - \lambda I) = 0$：
+
+特征多项式 $p(\lambda) = \lambda^{3} - 6 \lambda^{2} + 9 \lambda = \lambda \left(\lambda - 3\right)^{2}$。
+
+故特征值为 $\lambda = 0, 3$（重数已在括号中给出）。
+
+对 $\lambda = 0$，解 $(A - 0I)x = 0$，得基础解系 $\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$（几何重数 $1$，代数重数 $1$）。
+
+对 $\lambda = 3$，解 $(A - 3I)x = 0$，得基础解系 $\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix}$（几何重数 $2$，代数重数 $2$）。
+
+\textbf{答案：}
+\[\boxed{0(重数1), 3(重数2)}\]
+
+\textcolor{okgreen}{【符号回验 7/7 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{7}
+
+判断下列矩阵是否可对角化；若可以，求出可逆矩阵 $P$ 与对角阵 $D$，使 $P^{-1}AP = D$：
+
+$$
+A = \begin{pmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 2 & 2 & 1 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 1 & 2 & 2 \\ 2 & 1 & 2 \\ 2 & 2 & 1 \end{pmatrix}$。
+
+求得特征值后取对应的线性无关特征向量作为列，构成 $P = \begin{pmatrix} -1 & -1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}$。
+
+对应的对角阵 $D = \begin{pmatrix} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 5 \end{pmatrix}$。
+
+于是 $P^{-1}AP = D$，即 $A = PDP^{-1}$。
+
+回验：直接计算 $P^{-1}AP$ 与 $D$ 逐元素相等，且 $\det(P)\neq 0$。
+
+\textbf{答案：}
+{\small
+\[P = \begin{pmatrix} -1 & -1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix},\quad D = \begin{pmatrix} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 5 \end{pmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 4/4 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{8}
+
+用施密特正交化方法，把下列向量组（按列给出）化为正交单位向量组：
+
+$$
+(\alpha_1, \alpha_2, \alpha_3) = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}
+$$
+
+\solution
+
+对给定向量组 $\alpha_1,\dots,\alpha_n$ 施行施密特正交化：
+
+$\beta_1 = \alpha_1,\quad \beta_k = \alpha_k - \sum_{j<k}\frac{\langle\alpha_k,\beta_j\rangle}{\langle\beta_j,\beta_j\rangle}\beta_j$
+
+再单位化 $e_k = \beta_k/\|\beta_k\|$，得正交单位向量组（按列）$Q = \begin{pmatrix} \frac{\sqrt{2}}{2} & \frac{\sqrt{6}}{6} & - \frac{\sqrt{3}}{3} \\ \frac{\sqrt{2}}{2} & - \frac{\sqrt{6}}{6} & \frac{\sqrt{3}}{3} \\ 0 & \frac{\sqrt{6}}{3} & \frac{\sqrt{3}}{3} \end{pmatrix}$。
+
+回验：$Q^{\mathrm{T}}Q = I$，列向量两两正交且模长为 1。
+
+\textbf{答案：}
+{\small
+\[\begin{pmatrix} \frac{\sqrt{2}}{2} & \frac{\sqrt{6}}{6} & - \frac{\sqrt{3}}{3} \\ \frac{\sqrt{2}}{2} & - \frac{\sqrt{6}}{6} & \frac{\sqrt{3}}{3} \\ 0 & \frac{\sqrt{6}}{3} & \frac{\sqrt{3}}{3} \end{pmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 2/2 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{9}
+
+用正交变换把下列实对称矩阵对应的二次型化为标准形，并写出所用正交矩阵 $Q$：
+
+$$
+A = \begin{pmatrix} 4 & -1 & -1 \\ -1 & 4 & -1 \\ -1 & -1 & 4 \end{pmatrix}
+$$
+
+\solution
+
+二次型矩阵 $A = \begin{pmatrix} 4 & -1 & -1 \\ -1 & 4 & -1 \\ -1 & -1 & 4 \end{pmatrix}$（实对称）。
+
+求特征值并取正交单位特征向量，得正交阵 $Q = \begin{pmatrix} \frac{\sqrt{3}}{3} & - \frac{\sqrt{2}}{2} & - \frac{\sqrt{6}}{6} \\ \frac{\sqrt{3}}{3} & \frac{\sqrt{2}}{2} & - \frac{\sqrt{6}}{6} \\ \frac{\sqrt{3}}{3} & 0 & \frac{\sqrt{6}}{3} \end{pmatrix}$。
+
+作正交变换 $x = Qy$，标准形为 $Q^{\mathrm{T}}AQ = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5 \end{pmatrix}$，即 $f = 2y_1^2 + 5y_2^2 + 5y_3^2$。
+
+回验：$Q^{\mathrm{T}}Q = I$ 且 $Q^{\mathrm{T}}AQ$ 为对角阵。
+
+\textbf{答案：}
+{\small
+\[Q^{\mathrm{T}}AQ = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5 \end{pmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 4/4 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{10}
+
+求下列矩阵的奇异值分解（SVD），即求 $U, \Sigma, V$ 使 $A = U\Sigma V^{\mathrm{T}}$：
+
+$$
+A = \begin{pmatrix} 3 & 0 \\ 4 & 5 \end{pmatrix}
+$$
+
+\solution
+
+设 $A = \begin{pmatrix} 3 & 0 \\ 4 & 5 \end{pmatrix}$。计算 $A^{\mathrm{T}}A$ 的特征值，取平方根得奇异值。
+
+$U = \begin{bmatrix} -0.948683 & -0.316228 \\ 0.316228 & -0.948683 \end{bmatrix}$，$\Sigma = \begin{bmatrix} 2.23607 & 0 \\ 0 & 6.7082 \end{bmatrix}$，$V = \begin{bmatrix} -0.707107 & -0.707107 \\ 0.707107 & -0.707107 \end{bmatrix}$。
+
+回验：$\|U\Sigma V^{\mathrm{T}} - A\| = 9.93013661298909E-16 \approx 0$。
+
+\textbf{答案：}
+{\small
+\[U = \begin{bmatrix} -0.948683 & -0.316228 \\ 0.316228 & -0.948683 \end{bmatrix},\ \Sigma = \begin{bmatrix} 2.23607 & 0 \\ 0 & 6.7082 \end{bmatrix},\ V = \begin{bmatrix} -0.707107 & -0.707107 \\ 0.707107 & -0.707107 \end{bmatrix}\]
+}
+
+\textcolor{okgreen}{【符号回验 4/4 项全部通过】}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{11}
+
+证明：若 $A$ 为实对称矩阵，则 $A$ 的属于不同特征值的特征向量彼此正交。
+
+\textit{\color{warnred} 未求解: solvers\_linalg.eigen\_decomposition\_solver 执行失败: ValueError: 题目中未找到矩阵环境（pmatrix/bmatrix/vmatrix/array）}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\problem{12}
+
+设 $A$ 是 $m \times n$ 实矩阵，说明秩—零度定理 $\mathrm{rank}(A) + \dim N(A) = n$ 的几何含义，并举一个具体的 $2 \times 3$ 矩阵作为例子。
+
+\textit{\color{warnred} 未求解: solvers\_linalg.matrix\_rank\_solver 执行失败: ValueError: 题目中未找到矩阵环境（pmatrix/bmatrix/vmatrix/array）}
+
+\vspace{0.8em}
+\hrule
+\vspace{0.8em}
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+题号 & 引擎 & 已求解 & 回验通过项 \\
+\midrule
+    1 & SymPy & 是 & 2/2 \\
+    2 & SymPy & 是 & 3/3 \\
+    3 & SymPy & 是 & 2/2 \\
+    4 & SymPy & 是 & 3/3 \\
+    5 & SymPy & 是 & 3/3 \\
+    6 & SymPy & 是 & 7/7 \\
+    7 & SymPy & 是 & 4/4 \\
+    8 & SymPy & 是 & 2/2 \\
+    9 & SymPy & 是 & 4/4 \\
+    10 & SymPy & 是 & 4/4 \\
+    11 & none & 否 & 0/0 \\
+    12 & none & 否 & 0/0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent 共 12 题：已求解 10 题，其中通过符号回验 10 题。
+
+\end{document}

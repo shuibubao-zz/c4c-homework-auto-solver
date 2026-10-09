@@ -1,0 +1,50 @@
+{
+  "input": "../卢怡然_C4C_作业原件.md",
+  "output_dir": "C:\\Users\\卢怡然\\Desktop\\C4C\\_check\\la",
+  "engine": "v2",
+  "llm": "关闭",
+  "total": 12,
+  "solved": 10,
+  "verified": 10,
+  "llm_fallback": 0,
+  "stage5": {
+    "ok": true,
+    "engine": "pdflatex",
+    "pdf": "C:\\Users\\卢怡然\\Desktop\\C4C\\_check\\la\\homework.pdf",
+    "size": 461311,
+    "checks": [
+      {
+        "id": "V1",
+        "name": "PDF 已生成且 > 1KB（461,311 字节）",
+        "ok": true
+      },
+      {
+        "id": "V6",
+        "name": "PDF 文件完整（含 %%EOF）",
+        "ok": true
+      },
+      {
+        "id": "V3",
+        "name": "编译日志无致命错误",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "id": "V2",
+        "name": "页数 ≥ 1（实测 7 页）",
+        "ok": true
+      },
+      {
+        "id": "V4",
+        "name": "文本中无未解析引用（??）",
+        "ok": true
+      },
+      {
+        "id": "V5",
+        "name": "中文字符已正确嵌入（抽取到 864 个汉字）",
+        "ok": true
+      }
+    ]
+  },
+  "elapsed_sec": 6.95
+}

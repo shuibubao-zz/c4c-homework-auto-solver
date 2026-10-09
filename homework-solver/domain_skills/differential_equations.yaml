@@ -1,0 +1,81 @@
+# ============================================================
+# T-box: Ordinary Differential Equations（C4C 学科扩展 · 第二域）
+# ============================================================
+# Oracle sources:
+#   - 同济大学《高等数学》第七版 第十二章：常微分方程
+#   - Boyce & DiPrima, Elementary Differential Equations
+#   - SymPy dsolve / laplace_transform 文档
+# ============================================================
+
+domain: ordinary_differential_equations
+version: "1.0"
+
+oracle_sources:
+  - type: textbook
+    ref: "同济大学《高等数学》第七版 第十二章 常微分方程"
+    authority: primary
+    distilled_knowledge:
+      - "一阶可分离变量：g(y)dy = f(x)dx，两边积分"
+      - "一阶线性：y' + P(x)y = Q(x)，通解 y = e^{-∫P}(∫Q e^{∫P}dx + C)"
+      - "二阶常系数齐次：y'' + py' + qy = 0，特征方程 r² + pr + q = 0"
+      - "二重根 r：y = (C₁ + C₂x)e^{rx}；共轭复根 α±βi：y = e^{αx}(C₁cos βx + C₂ sin βx)"
+      - "初值问题：先求通解再代初值定常数（SymPy 用 ics= 直接给特解）"
+  - type: reference
+    ref: "SymPy dsolve / laplace_transform 文档"
+    authority: primary
+    distilled_knowledge:
+      - "dsolve(Eq, f(x)) 求通解；dsolve(Eq, f(x), ics={f(0):1}) 求特解"
+      - "laplace_transform(f(t), t, s, noconds=True) 返回变换式"
+
+concepts:
+  - id: ode_general
+    name: "常微分方程通解"
+    definition: "含任意常数的解族"
+  - id: ode_ivp
+    name: "初值问题"
+    definition: "带初始条件的特解"
+  - id: laplace_transform
+    name: "拉普拉斯变换"
+    definition: "F(s) = ∫₀^∞ f(t)e^{-st}dt 及其反变换"
+
+solution_methods:
+  - id: ode_general_solver
+    concept: ode_general
+    engine: sympy
+    routine: "dsolve()"
+    self_check: "解代回原方程残差 = 0"
+  - id: ode_ivp_solver
+    concept: ode_ivp
+    engine: sympy
+    routine: "dsolve(ics=...)"
+    self_check: "残差 = 0 且满足全部初值条件"
+  - id: laplace_transform_solver
+    concept: laplace_transform
+    engine: sympy
+    routine: "laplace_transform / inverse_laplace_transform"
+    self_check: "正/反变换互逆，或与定义式积分数值一致"
+
+classification_rules:
+
+  - priority: 96
+    pattern:
+      text_contains: ["拉普拉斯", "Laplace", "laplace", "\\mathcal{L}"]
+    maps_to: laplace_transform
+    solver: laplace_transform_solver
+    reason: "题干出现『拉普拉斯 / Laplace』"
+
+  - priority: 90
+    pattern:
+      text_contains: ["初值", "初始条件", "initial condition", "initial value",
+                      "满足 y(0)", "y(0)=", "特解"]
+      has_ode_expression: true
+    maps_to: ode_ivp
+    solver: ode_ivp_solver
+    reason: "含 ODE 且给出初值条件"
+
+  - priority: 80
+    pattern:
+      has_ode_expression: true
+    maps_to: ode_general
+    solver: ode_general_solver
+    reason: "兜底：识别出微分方程"

@@ -1,0 +1,236 @@
+{
+  "skill": "卢怡然_C4C_homework-solver.skill",
+  "skill_sha256": "ec297766e303b83e7655663322b620ed8a6ed479b838e7973eff696ca50962c0",
+  "skill_size": 549591,
+  "file_count": 57,
+  "files": {
+    "homework-solver/.gitignore": {
+      "sha256": "b9491609f89600c71cd51ff0c06117b2a925f75cbd1d401929f50440ffad065c",
+      "size": 239
+    },
+    "homework-solver/CHALLENGE.md": {
+      "sha256": "955692c7a9bb41b844d63f39dbe26f65c312e0121a684922281172cc15153a2a",
+      "size": 10281
+    },
+    "homework-solver/challenge_answers_cn.pdf": {
+      "sha256": "d3e320658646131c56997812a645d510a58b8e3d5fd1f5010b0955641bcd6689",
+      "size": 134748
+    },
+    "homework-solver/challenge_answers_cn.tex": {
+      "sha256": "81cd3141ab5ffb1ad28727673f8fe86cdceef6f0e9eca75b2aae3da94da0d5e1",
+      "size": 17107
+    },
+    "homework-solver/domain_skills/calculus_limits.yaml": {
+      "sha256": "6d7eedb3177116608f1203727f88d48d30c356f2fe357e7f30efca7a3c74c29d",
+      "size": 26928
+    },
+    "homework-solver/domain_skills/differential_equations.yaml": {
+      "sha256": "d2f067a9a05567e1990d3016b9ffbd6e12d4e3e2affd3cc4a45eaf9f2d893f13",
+      "size": 2952
+    },
+    "homework-solver/domain_skills/linear_algebra.yaml": {
+      "sha256": "bdb2f2d5bf9c883591e08784c348cdfb5ead363a2af7cc28caf8d4c6e8b054a4",
+      "size": 9818
+    },
+    "homework-solver/examples/sample_homework.md": {
+      "sha256": "b77b71752654bc44fb7efa78ca9c3173ee68c38ddd3ffc80dd13102f6b4f4ecb",
+      "size": 774
+    },
+    "homework-solver/examples/sample_output.tex": {
+      "sha256": "2e8f1e1f85e44e7d6c5e8184fae879660ba4834a113470e1b625aa691e661e69",
+      "size": 3292
+    },
+    "homework-solver/oracles/01_textbook_stewart.md": {
+      "sha256": "86e1cac26fc0f86c9cc82635ed338e0eb3e72c15de82dea376b3ff0593245df0",
+      "size": 2534
+    },
+    "homework-solver/oracles/02_study_guide.md": {
+      "sha256": "dd1efe563c9b25f0f23b783a8709bfc081dcebd1a200b4739487935852599054",
+      "size": 1911
+    },
+    "homework-solver/oracles/03_instructor_guide.md": {
+      "sha256": "628db18c0dab5ff0e662febd777837cdd7a79af721dd379571aa9916872f9aad",
+      "size": 3283
+    },
+    "homework-solver/oracles/04_pedagogy_guide.md": {
+      "sha256": "0909dd191a4542a1acd20001064f8fc33ca67c1c93b719c6d7c681f67b491bd3",
+      "size": 4658
+    },
+    "homework-solver/oracles/05_exemplars.md": {
+      "sha256": "9883511db8687c14b269eeb831207dae3b4ddeb18a88988395027e9829fca058",
+      "size": 3294
+    },
+    "homework-solver/oracles/README.md": {
+      "sha256": "c0ef45d38d290b9bfef26e70466fef1372815fcce84c35263c4b4f1a9fbb81d7",
+      "size": 1994
+    },
+    "homework-solver/README.md": {
+      "sha256": "26b21123b99e79abe76d29baf3645bc09c1d0795480bf65bd0e639fcec2a0596",
+      "size": 6118
+    },
+    "homework-solver/references/homework_template.tex": {
+      "sha256": "e47b75c51d8133e4a9172ef97cad57997a6afb44068c4c8676bdc27db17b02f9",
+      "size": 3308
+    },
+    "homework-solver/references/sympy_cheatsheet.md": {
+      "sha256": "9efb2ff34719091fdc74fc7c8087bc7893f0b4241c88899d0222fc1cf6e10794",
+      "size": 5303
+    },
+    "homework-solver/requirements.txt": {
+      "sha256": "0c419cd5f978e62d3ffbf4e012f4e827aa7d9cf03cabf7d4b217b3d9e0371ea5",
+      "size": 1078
+    },
+    "homework-solver/scripts/bootstrap.py": {
+      "sha256": "42b0750f5eee913015e995a2cd4e6edb53d5cd6fcb1dc5854df915b469bdce8b",
+      "size": 5247
+    },
+    "homework-solver/scripts/classify.py": {
+      "sha256": "71e6a7e8a7cf501a540d2f05413f1092baed80bc7f38b272dbb9e0ba729751b9",
+      "size": 16202
+    },
+    "homework-solver/scripts/compile_pdf.py": {
+      "sha256": "160302707adbd2a656fd416c300cd399ad6319f4a96ba1a7e56459e284f56152",
+      "size": 10443
+    },
+    "homework-solver/scripts/ingest.py": {
+      "sha256": "368bac8eac72722c73a00405612b49bff4521935ca4206eadfdaa288bf44c038",
+      "size": 5878
+    },
+    "homework-solver/scripts/llm_client.py": {
+      "sha256": "b315c67fe7f0b4f3ffbb3cdd0191f966b3b46e346cba1456eca544de994a015d",
+      "size": 12968
+    },
+    "homework-solver/scripts/parse_problems.py": {
+      "sha256": "4b299bfd8d54ce75ad0a00b2152cfa34fae38d5b7f1b7c444ae2596699bb0813",
+      "size": 13208
+    },
+    "homework-solver/scripts/pipeline.py": {
+      "sha256": "a1f31bf37da3fd3df70438c1fd777a4c59d41ac9bc5421db8deebbafa0438baa",
+      "size": 9370
+    },
+    "homework-solver/scripts/render_latex.py": {
+      "sha256": "4d7e89a9f7573c0225a7b6fafca408d3f7db976f92eed2cbe512f4395941c3b9",
+      "size": 12796
+    },
+    "homework-solver/scripts/retrieve.py": {
+      "sha256": "28c347ca187881cbc523c5dd4090bf6107adf1f5d780cf64f1d897312255d79c",
+      "size": 5896
+    },
+    "homework-solver/scripts/solve.py": {
+      "sha256": "a7f31e2878ff3b70306b1aca98ec9ca73a842c5bf17c880489bf19d07addce9e",
+      "size": 67278
+    },
+    "homework-solver/scripts/solve_ext.py": {
+      "sha256": "1b99692c6fed79ffd9aceb5c507ea68ef59c33ef0ff49d3860b060ce5c05d2bb",
+      "size": 12003
+    },
+    "homework-solver/scripts/solvers_linalg.py": {
+      "sha256": "a8a0e610e5ef1a0843c4bcf8792a8b1303794ffeb369c5064f7c07402fa3c0b8",
+      "size": 32472
+    },
+    "homework-solver/scripts/solvers_ode.py": {
+      "sha256": "e22a14748a757264dc3fed0a42a3c8afa940925f3b1c2a510f957bd4479b4687",
+      "size": 11743
+    },
+    "homework-solver/SKILL.md": {
+      "sha256": "af0a16dc30ba2089a306521db289cb1e2bd7f34f3c3738adf42ebc5ed8aaf601",
+      "size": 16159
+    },
+    "homework-solver/solver_templates/sympy_solvers/limit_direct.py": {
+      "sha256": "41d934817883c2251030ebcc29f8ec6952175f5172005a4a59a4b700560ab13d",
+      "size": 1916
+    },
+    "homework-solver/solver_templates/sympy_solvers/limit_dne.py": {
+      "sha256": "0b5a49ae68f4543e96149f6336d02fa8be4a1404eb98ee5fc6c0cb9e7d5dbb79",
+      "size": 2183
+    },
+    "homework-solver/solver_templates/template_solvers/epsilon_delta_notation.py": {
+      "sha256": "1ab927b1719f1df44904e5dadc10610e91a0ffdde5b9ef4bf017ba93277c7a04",
+      "size": 3644
+    },
+    "homework-solver/test1_answers_cn.pdf": {
+      "sha256": "4060fe1fc2e4fbd8ae8afa5cbc0653cbc67619f5df12256a01e1ab1ea87aae43",
+      "size": 74923
+    },
+    "homework-solver/test1_worksheet_cn.pdf": {
+      "sha256": "d9af913327225735629ed32a243f4ac6102eae3eed66f7f0cf498858b0e1d451",
+      "size": 36591
+    },
+    "homework-solver/test2_answers_cn.pdf": {
+      "sha256": "0f7eb0b2a7b261b1e14dcda9c8f695f36e0a635b251e697706e20408d489f1b6",
+      "size": 101001
+    },
+    "homework-solver/test2_worksheet_cn.pdf": {
+      "sha256": "7fa1d142046a063dcaaaf57690e45d696fccd2c66f073654b2b6c9ad3265e374",
+      "size": 50627
+    },
+    "homework-solver/test_cases/test1_output/1_ingested.json": {
+      "sha256": "1e6059be8cf22eed0b8f5918d54b787537c4fd0b00e8f4b19f4df6cc11fafc24",
+      "size": 4407
+    },
+    "homework-solver/test_cases/test1_output/2_parsed.json": {
+      "sha256": "d99743bb7fa7ac31001b90f757b1bd58e1e21def0dcc45f98eaba3b204857b1d",
+      "size": 7461
+    },
+    "homework-solver/test_cases/test1_output/3_solutions.json": {
+      "sha256": "72dd2572b39378a7a0b658708ee31e50bd043adac3c020bef8fe90f33601cab1",
+      "size": 11639
+    },
+    "homework-solver/test_cases/test1_output/homework.tex": {
+      "sha256": "bb10fa6c4f13d1407390271c26b26e2bf9a0446025c2f2cd8f288f140916ab08",
+      "size": 5833
+    },
+    "homework-solver/test_cases/test1_tangent_epsilon_delta.md": {
+      "sha256": "42d126c571c125a986f4b3950b202acc28b4e7c303104f4734d7ace61c5b3131",
+      "size": 2060
+    },
+    "homework-solver/test_cases/test2_limits.md": {
+      "sha256": "7e0eb88d10d7a57aafaaf97eccfebc6223041e833985f1836af08e6078ad63d4",
+      "size": 2657
+    },
+    "homework-solver/test_cases/test2_output/1_ingested.json": {
+      "sha256": "e2262cfc600603657e219ffd3c55b3ada2b2300fb145c1d6860c80974e9e8197",
+      "size": 5742
+    },
+    "homework-solver/test_cases/test2_output/2_parsed.json": {
+      "sha256": "320b817ac983f6b8df4705e3d0de21306e564297255a2b37376c0b12083da422",
+      "size": 9038
+    },
+    "homework-solver/test_cases/test2_output/3_solutions.json": {
+      "sha256": "eaaed5669d3e6a8986de541082b94616c4339c21320412a3fd897c7d7260cb32",
+      "size": 11399
+    },
+    "homework-solver/test_cases/test2_output/homework.tex": {
+      "sha256": "6a60f2887b8a6c38f01438e3ce0fc06506b4d64b2eb0ac9f9c638c30de0029d2",
+      "size": 6536
+    },
+    "homework-solver/tests/golden/legacy_test1_parsed.json": {
+      "sha256": "7d26870f8648b8b3a3c17b3e744cf17b39c47420321cd1eb710ce59f9009bbdb",
+      "size": 7786
+    },
+    "homework-solver/tests/golden/legacy_test1_solutions.json": {
+      "sha256": "49848232cdb06481c4ac1cced3bf652cccf85b41990c66f5119d06430bcb5e73",
+      "size": 11971
+    },
+    "homework-solver/tests/golden/legacy_test2_parsed.json": {
+      "sha256": "08135518e714f20ccbce89540b25004d829987ba1256f18fce0c68012709da62",
+      "size": 9376
+    },
+    "homework-solver/tests/golden/legacy_test2_solutions.json": {
+      "sha256": "4574ebf4354907e2602748edc4d26b602a20b5fcdb5b4e1dcf3ef0e3ca8767ac",
+      "size": 12480
+    },
+    "homework-solver/tests/golden/MANIFEST.json": {
+      "sha256": "7824d48b47bf206fcefafd0d4775bb9d853aa4875601be274b5f1555991c45ca",
+      "size": 2285
+    },
+    "homework-solver/tests/record_golden.py": {
+      "sha256": "67c8644b081103f5b4dd5473285517c01aee92f8bd931cb39bdb9b20f2f7ce08",
+      "size": 8078
+    },
+    "homework-solver/tests/selftest.py": {
+      "sha256": "89cbea84ba42670d04646a4c634450d9153e9cb75eb158bb0d4661f4f80a1538",
+      "size": 21480
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# Core dependencies (required)
+sympy>=1.12
+pyyaml>=6.0
+numpy>=1.24
+
+# 多格式摄入（推荐）
+pypdf>=3.0            # PDF 摄入 + Stage5 抽文本（V4/V5 验证依赖）
+python-docx>=0.8      # Word .docx 摄入
+
+# 国产模型调用（可选）
+# 不装 requests 时 llm_client 会自动降级到标准库 urllib.request
+requests>=2.28
+
+# 可选：更精确的 PDF 表格提取，缺了会自动降级 pypdf
+# pdfplumber>=0.9
+
+# 可选：OCR（扫描件/图片），公式识别可靠性不足，本项目未启用
+# pytesseract>=0.3
+# Pillow>=10.0
+
+# ── LaTeX（不在 pip 里，需另外装）────────────────────────
+# 中文 PDF 需要 ctex 宏包：
+#   TeX Live:  tlmgr install ctex
+#   MiKTeX:    mpm --install=ctex
+# 引擎降级顺序（本包自动处理）：xelatex → pdflatex → lualatex
+# 本机实测：xelatex 在缺 fontconfig 配置的 Windows 上会报
+#   "Fontconfig error: Cannot load default config file"
+# pdflatex + ctex 走 CJK 字体（SimSun/SimHei）则正常，无需改系统配置。
