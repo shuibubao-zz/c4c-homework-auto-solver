@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# LaTeX 中间产物
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.xdv
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 本地调试产物与早期草稿（不提交）
+_check/
+_archive/
+
+# _starter/ 是下发包解压出来的对照源码，用于重新固化基线黄金；
+# 体积较大，默认不提交（要留可由 --force 单独 add）
+_starter/
